@@ -6,3 +6,9 @@ video/**/out/
 test-results/
 playwright-report/
 .impeccable/config.local.json
+scripts/.cache/
+video/hyperframes/*-ca/
+video/hyperframes/*-es/
+video/remotion/node_modules/
+video/remotion/out/
+package-lock.json

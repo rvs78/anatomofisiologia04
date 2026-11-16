@@ -1,0 +1,14 @@
+{
+  "name": "sentits-clinic",
+  "private": true,
+  "type": "module",
+  "description": "Sentits Clínic · patologies dels òrgans dels sentits (MP0061 RA4, FAR 1L)",
+  "scripts": {
+    "check": "node tests/check.mjs",
+    "e2e": "node tests/e2e.mjs",
+    "images": "node scripts/gen-images.mjs && python3 scripts/optimize-images.py",
+    "capsules": "node video/hyperframes/build.mjs --render",
+    "tutorial": "sh video/remotion/render.sh"
+  },
+  "devDependencies": { "playwright": "1.63.0" }
+}

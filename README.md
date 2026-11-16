@@ -4,7 +4,9 @@ Aplicació web educativa per a **MP0061 Anatomofisiologia i Patologia Bàsiques*
 
 Quarta aplicació de la família *Quest* (Vascular Quest → Sentits Quest → Pissarra Quest → **Sentits Clínic**). Comparteix amb les anteriors l'entrada amb contrasenya, el sobre d'instruccions amb vídeo, la puntuació, l'estadística i l'informe final en PDF per lliurar a Google Classroom.
 
-> Estat: **proposta (v0.2 · especificació revisada)**. Encara no hi ha codi d'aplicació: aquest repositori conté l'especificació per construir-la amb desenvolupament guiat per especificacions (*spec-driven development*).
+> Estat: **v1.0-rc** — jugable de principi a fi. Pendent: revisió de les imatges pel professor, prova pilot i models 3D de nas, llengua i pell (v1.1).
+>
+> **Jugar:** https://rvs78.github.io/anatomofisiologia04/ · contrasenya de classe de FAR.
 
 ## Què hi ha al repositori
 
@@ -36,10 +38,29 @@ Entrada (nom · grup · idioma · contrasenya)
 ## Execució local
 
 ```bash
-npx serve .            # o qualsevol servidor estàtic
-node tests/check.mjs   # comprovacions de contingut i lògica
-npx playwright test    # proves d'extrem a extrem
+python3 -m http.server 3000      # o qualsevol servidor estàtic
+node tests/check.mjs             # comprovacions de contingut i lògica
+node tests/e2e.mjs               # partida completa amb Playwright (npm i abans)
 ```
+
+## Regenerar els mitjans
+
+| Què | Ordre | Notes |
+| --- | --- | --- |
+| Imatges (Seedream 5.5 via OpenRouter) | `npm run images` | clau a `.env` (`OPENROUTER_API_KEY`), mai al repositori; prompts a `assets/img/prompts.json` |
+| Càpsules N1 (HyperFrames) | `npm run capsules` | una per estació i idioma, sense veu; genera MP4, pòster i WebVTT a `assets/video/` |
+| Tutorial del sobre (Remotion) | `cd video/remotion && npm i && sh render.sh` | ca i es, sense veu, amb subtítols |
+
+## Estructura del codi
+
+| Fitxer | Paper |
+| --- | --- |
+| `app.js` | entrada, sobre, mapa, nivells, cas clínic i informe |
+| `engines.js` | un motor per activitat: càpsula, exploració, arrossegar a la làmina, preguntes, classificar, ordenar, graella, escriure, banc òptic, simulador de visió, via del so, sabor, laboratori de paraules, ABCDE |
+| `ui.js` | arrossegar-deixar (ratolí, tàctil, tocar-tocar, teclat), diàlegs, làmines amb punts |
+| `logic.js` · `config.js` | puntuació, nota, encert, correcció tolerant · contrasenya, desbloqueig, pesos |
+| `data/` | patologies, estacions, casos, glossari, noms de les làmines |
+| `drawings.js` · `models.js` · `fx.js` | làmines i ancoratges (app 03) · models 3D (app 02) · efectes (app 02) |
 
 Publicació: GitHub Pages des de la branca `main` (vegeu `.github/workflows/pages.yml`).
 

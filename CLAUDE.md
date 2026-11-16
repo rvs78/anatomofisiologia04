@@ -11,10 +11,11 @@ Instruccions per a Claude Code en aquest repositori.
 6. Actualitzar Impeccable: `npx impeccable update` (o tornar a copiar `.claude/skills/impeccable` des de `pbakaus/impeccable`).
 
 ## Regles
-- Cap dependència en temps d'execució fora de `vendor/` (three.js, Motion).
+- Cap dependència en temps d'execució fora de `vendor/` (three.js). Les animacions de la UI usen la Web Animations API (`fx.js`).
 - Tot text visible passa per `b(ca, es)`; mateix ordre d'ítems en les dues llengües.
 - Cap clau d'API al codi del client ni en commits. Les imatges es generen amb `scripts/gen-images.mjs` (Seedream 5.5 via OpenRouter) i es versionen.
-- Cap imatge sense `alt` ca/es al manifest; cap imatge publicada amb `reviewed: false`.
+- Cap imatge sense `alt` ca/es al manifest. `reviewed`: `"claude"` = revisió visual feta per Claude; `true` = revisada pel professor; `false` = no es pot publicar.
+- La clau d'OpenRouter només viu a `.env` (ignorat per git).
 - Puntuació: no la modifiquis; ha de coincidir amb `anatomofisiologia02/logic.js`.
 - Abans de cada commit: `node tests/check.mjs`. Abans d'una versió: `npx playwright test`.
 - Codificació de vídeo: H.264, CRF 23, `-preset veryfast`.

@@ -59,12 +59,14 @@ Mòbil (< 768 px): escena a dalt (55 vh), panell a sota amb safata horitzontal d
 
 | Capa | Eina | Ús |
 | --- | --- | --- |
-| Microinteraccions | **Motion** (motion.dev, ESM vendoritzat) | arrossegar/deixar, encaix amb molla, sacseig d'error, comptador de punts, transicions entre nivells |
+| Microinteraccions | Web Animations API (`fx.js`) | arrossegar/deixar, encaix amb molla, sacseig d'error, comptador de punts, transicions entre nivells |
 | Càpsules de motion graphics (45–75 s) | **HyperFrames** (composicions HTML → MP4) | «Observa» de cada estació: com funciona el sentit i què falla a cada patologia |
 | Vídeo tutorial d'instruccions | **Remotion** | sobre d'instruccions (com es juga, puntuació, informe), mateix format que les apps anteriors |
 | 3D | **three.js** | ull i orella (reutilitzats de `anatomofisiologia02`), fossa nasal, llengua amb botó gustatiu, bloc de pell en capes |
 
-Regles: durades 150–300 ms a la UI; cap animació bloqueja la resposta; `prefers-reduced-motion` substitueix moviments per fosos i atura l'autoreproducció dels vídeos; els vídeos sempre tenen subtítols (ca/es) i transcripció.
+Regles: durades 150–300 ms a la UI; cap animació bloqueja la resposta; `prefers-reduced-motion` substitueix moviments per fosos i atura l'autoreproducció dels vídeos. Els vídeos no tenen veu: el text de cada pas és dins la imatge (franja fosca) i, a més, hi ha pista WebVTT ca/es per als lectors de pantalla; la càpsula també es pot veure «pas a pas» i el botó *Descripció* en dona la transcripció.
+
+Les microinteraccions fan servir la Web Animations API de `fx.js` (heretat); no ha calgut afegir la llibreria Motion.
 
 ## 6. Accessibilitat (WCAG 2.1 AA)
 
