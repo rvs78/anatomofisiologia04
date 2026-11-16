@@ -24,7 +24,7 @@ export function capsule(host, st, ctx) {
     <div class="capsule" style="--st:${st.color}">
       <div class="seg capmode" role="group"><button class="on" data-mode="video" aria-pressed="true">${ic('play')} ${t('capVideo')}</button><button data-mode="steps" aria-pressed="false">${ic('layers')} ${t('capSteps')}</button></div>
       <div class="capvideo"><video controls playsinline preload="metadata" poster="${base}.webp" aria-label="${t('capsule')} · ${esc(L(st.title))}">
-        <source src="${base}.mp4" type="video/mp4"><track kind="captions" srclang="${lang}" label="${lang === 'ca' ? 'Català' : 'Castellano'}" src="${base}.vtt"></video>
+        <source src="${base}.webm" type="video/webm"><source src="${base}.mp4" type="video/mp4"><track kind="captions" srclang="${lang}" label="${lang === 'ca' ? 'Català' : 'Castellano'}" src="${base}.vtt"></video>
         <p class="muted small">${t('capNote')}</p></div>
       <div class="capsteps" hidden>
       <div class="capstage">
@@ -66,11 +66,14 @@ export function capsule(host, st, ctx) {
     else { vid.pause(); playing = !fx.reduced(); show(0); syncPlay(); tick(); }
   };
   $('.capmode', host).onclick = e => { const b = e.target.closest('[data-mode]'); if (b) mode(b.dataset.mode); };
-  vid.querySelector('source').onerror = () => { $('[data-mode="video"]', host).disabled = true; mode('steps'); };
-  $('[data-next]', host).onclick = () => { clearTimeout(timer); vid.pause(); ctx.done(); };
+  let gone = false;
+  // sense cap font reproduïble (p. ex. navegador sense H.264 ni VP9): passa al mode pas a pas, si la càpsula encara és a la pantalla
+  const sources = $$('source', vid); let failed = 0;
+  sources.forEach(src => src.onerror = () => { if (gone || ++failed < sources.length) return; $('[data-mode="video"]', host).disabled = true; mode('steps'); });
+  $('[data-next]', host).onclick = () => { gone = true; clearTimeout(timer); vid.pause(); ctx.done(); };
   ctx.setHint(null);
   playing = false; show(0); syncPlay();
-  return () => { clearTimeout(timer); vid.pause(); };
+  return () => { gone = true; clearTimeout(timer); vid.pause(); };
 }
 
 export function explore(host, st, ctx) {

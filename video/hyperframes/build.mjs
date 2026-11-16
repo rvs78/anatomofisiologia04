@@ -119,5 +119,7 @@ for (const st of STATIONS) for (const lang of ['ca', 'es']) {
     // pòster: fotograma del primer pas
     execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-ss', String(3.2 + 2), '-i', out, '-frames:v', '1', '-q:v', '70', ROOT + `assets/video/${st.id}-${lang}.webp`]);
     if (!existsSync(out)) throw new Error('render fallit: ' + out);
+    // WebM (VP9) per als navegadors sense H.264
+    execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-i', out, '-c:v', 'libvpx-vp9', '-crf', '36', '-b:v', '0', '-row-mt', '1', '-cpu-used', '5', '-an', out.replace(/\.mp4$/, '.webm')]);
   }
 }

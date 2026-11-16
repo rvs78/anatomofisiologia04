@@ -126,13 +126,14 @@ function intro() {
     <div class="envelope-in">
       <p class="lead">${t('introLead')}</p>
       <video class="tutorial" controls autoplay muted playsinline preload="metadata" poster="./assets/video/tutorial-${getLang()}.webp" aria-label="${t('howto')}">
-        <source src="./assets/video/tutorial-${getLang()}.mp4" type="video/mp4"><track kind="captions" srclang="${getLang()}" src="./assets/video/tutorial-${getLang()}.vtt"></video>
+        <source src="./assets/video/tutorial-${getLang()}.webm" type="video/webm"><source src="./assets/video/tutorial-${getLang()}.mp4" type="video/mp4"><track kind="captions" srclang="${getLang()}" src="./assets/video/tutorial-${getLang()}.vtt"></video>
       <div class="howcards">${cards.map(([k, i], n) => { const [h, p] = t(k); return `<div class="howto" style="--st:${STATIONS[n * 2].color}">${ic(i)}<h3>${h}</h3><p>${p}</p></div>`; }).join('')}</div>
       <ol class="levelsrow">${t('levelNames').map((x, n) => `<li><span>${n + 1}</span>${x}</li>`).join('')}<li class="case"><span>${ic('cross')}</span>${t('caseTitle')}</li></ol>
       <div class="row spread"><p class="muted">${t('introScore')}</p><button class="btn" data-close>${ic('play')} ${t('start')}</button></div>
     </div>`, { wide: true, onClose: () => { s.seen.intro = true; save(); } });
   d.el.classList.add('intro');
-  const v = $('video.tutorial', d.el); v.querySelector('source').onerror = () => v.remove();
+  const v = $('video.tutorial', d.el), srcs = $$('source', v); let bad = 0;
+  srcs.forEach(x => x.onerror = () => { if (++bad === srcs.length) v.remove(); });
   if (fx.reduced()) v.removeAttribute('autoplay'), v.pause();
   fx.sound.play('open');
   if (!fx.reduced()) $$('.howto', d.el).forEach((c, i) => c.animate([{ transform: `translateY(40px) rotate(${(i - 1) * 6}deg)`, opacity: 0 }, { transform: 'none', opacity: 1 }], { duration: 480, delay: 120 + i * 90, easing: 'cubic-bezier(0.16,1,0.3,1)', fill: 'backwards' }));

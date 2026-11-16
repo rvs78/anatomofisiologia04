@@ -91,13 +91,13 @@ async function solveTask() {
   throw new Error('motor desconegut: ' + (await p.innerHTML(h)).slice(0, 200));
 }
 
+process.on('exit', c => { if (c) console.log('Errors de pàgina:', errs.join(' || ') || 'cap'); });
 const stations = ['vista', 'oida', 'olfacte', 'gust', 'pell'];
 for (const st of stations) {
   await p.click(`[data-st="${st}"]`);
   for (let lv = 1; lv <= 4; lv++) {
     for (let guard = 0; guard < 40; guard++) { if ((await solveTask()) === 'end') break; await p.waitForTimeout(60); }
     const ok = await p.$('.lvsum.ok'); if (!ok) throw new Error(`${st} N${lv} no superat`);
-    if (st === 'vista' && lv === 2) 
     if (lv < 4) await p.click('#nextlv'); else await p.click('#tomap2');
     await p.waitForTimeout(150);
   }
