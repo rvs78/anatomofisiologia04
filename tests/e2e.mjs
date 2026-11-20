@@ -4,7 +4,7 @@ import { chromium } from 'playwright';
 const BASE = process.env.BASE || 'http://localhost:3000/';
 const VW = +(process.env.VW || 1440), VH = +(process.env.VH || 900), LANG = process.env.LANG2 || 'ca';
 const b = await chromium.launch({ executablePath: process.env.CHROME || undefined, args: ['--no-sandbox'] });
-const p = await b.newPage({ viewport: { width: VW, height: VH }, hasTouch: !!process.env.TOUCH }); p.setDefaultTimeout(5000);
+const p = await b.newPage({ viewport: { width: VW, height: VH }, hasTouch: !!process.env.TOUCH }); p.setDefaultTimeout(8000); p.setDefaultTimeout(5000);
 const errs = []; p.on('pageerror', e => errs.push('PAGE ' + e.stack)); p.on('console', m => { if (m.type() === 'error') errs.push('CONSOLE ' + m.text()); });
 await p.goto(BASE); await p.waitForTimeout(600);
 if (LANG === 'es') { await p.click('.langopt[data-lang="es"]'); }
@@ -31,6 +31,8 @@ const D = await p.evaluate(async lang => {
 }, LANG);
 
 const SHOT = new Set();
+// Centra un punt de la làmina abans de tocar-lo (si no, en mòbil pot quedar sota la capçalera fixa).
+async function tapTarget(sel) { await p.locator(sel).evaluate(el => el.scrollIntoView({ block: 'center' })); await p.locator(sel).click({ force: true }); }
 async function shot(n){ if(!process.env.SHOTS || SHOT.has(n)) return; SHOT.add(n); await p.waitForTimeout(350); await p.screenshot({ path: `/tmp/x-${n}.png` }); }
 async function solveTask() {
   const h = '#task';
@@ -38,14 +40,14 @@ async function solveTask() {
   if (await p.$(`${h} .lvsum`)) return 'end';
   if (await p.$(`${h} .capsule`)) { await p.click(`${h} [data-next]`); return; }
   if (await p.$(`${h} .explore`)) {
-    await p.click(`${h} .ex2d .dot >> nth=0`, { force: true }); // els punts veïns es poden solapar: l'app tria el centre més proper
+    await tapTarget(`${h} .ex2d .dot >> nth=0`); // els punts veïns es poden solapar: l'app tria el centre més proper
     if (process.env.WITH3D && await p.$(`${h} [data-view="3d"]`)) { await p.click(`${h} [data-view="3d"]`); await p.waitForTimeout(800); await p.click(`${h} [data-view="2d"]`); }
     await p.click(`${h} [data-next]`); return;
   }
   if (await p.$(`${h} .dragplate`)) {
     while (await p.$(`${h} [data-chip]`)) {
       const name = (await p.textContent(`${h} [data-chip] >> nth=0`)).trim();
-      await p.click(`${h} [data-chip] >> nth=0`); await p.click(`${h} [data-target="${D.plate[name]}"]`, { force: true });
+      await p.click(`${h} [data-chip] >> nth=0`); await tapTarget(`${h} [data-target="${D.plate[name]}"]`);
     }
     await p.click(`${h} [data-next]`); return;
   }

@@ -49,7 +49,7 @@ export const PLATES = {
       meissner: b('Corpuscle de Meissner', 'Corpúsculo de Meissner'), pacini: b('Corpuscle de Pacini', 'Corpúsculo de Pacini'),
       merkel: b('Discs de Merkel', 'Discos de Merkel'), lliures: b('Terminacions nervioses lliures', 'Terminaciones nerviosas libres'),
       ruffini: b('Corpuscle de Ruffini', 'Corpúsculo de Ruffini'), pel: b('Pèl (fol·licle pilós)', 'Pelo (folículo piloso)'),
-      sebacia: b('Glàndula sebàcia', 'Glándula sebácea'), sudoripara: b('Glàndula sudorípara', 'Glándula sudorípara'), vas: b('Vasos sanguinis', 'Vasos sanguíneos'),
+      sebacia: b('Glàndula sebàcia', 'Glándula sebácea'), melanocits: b('Melanòcits (epidermis)', 'Melanocitos (epidermis)'), sudoripara: b('Glàndula sudorípara', 'Glándula sudorípara'), vas: b('Vasos sanguinis', 'Vasos sanguíneos'),
     },
   },
 };

@@ -37,7 +37,7 @@ Que l'alumnat relacioni cada patologia dels òrgans dels sentits (vista, oïda, 
 - Entrada amb nom, grup, idioma i la contrasenya de classe de FAR (`alumnesfar`, la de `anatomofisiologia02`; `anatomofisiologia03` no té entrada).
 - Bilingüe català / castellà, canviable a mitja partida sense perdre progrés.
 - Puntuació idèntica a les apps anteriors: +10, −3, −5 per pista, +15 cada 3 encerts seguits, mínim 0; nota de 1 a 10.
-- Cinc estacions de quatre nivells (Observa, Localitza, Comprèn, Relaciona); el cas clínic final es desbloqueja **només amb les cinc estacions completades**.
+- Cinc estacions de quatre nivells (Observa, Localitza, Comprèn, Relaciona); el cas clínic és obert des del principi (canvi del 20-11-2026), amb la recomanació de fer-lo al final.
 - Càpsules HyperFrames **només amb subtítols** (sense veu en off).
 - Imatges Seedream (OpenRouter) generades en temps de construcció; cap clau d'API al client.
 - Sense backend, sense comptes reals, sense enviament automàtic a Classroom.

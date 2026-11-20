@@ -438,6 +438,10 @@ const BASE_ORGANS = {
    dibuixos com a plantilla (tools/ref.html → tools/laminas.py). La imatge cobreix el viewBox 0 −25 1000 750.
    Els punts s'han revisat un per un sobre cada imatge (tools/overlay.html); aquí hi ha els que s'han hagut de moure. */
 export const IMG_BOX = { x: 0, y: -25, w: 1000, h: 750 };
+// Punts afegits sobre la imatge realista (revisats a la làmina): estructures que el dibuix base no marca.
+const IA_EXTRA = {
+  pell: [['melanocits', [698, 181]]], // unió epidermis-dermis (estrat basal), a la dreta del bloc, lluny d'altres punts
+};
 const IA_FIX = {
   orella: { pavello: [273, 288] },
   llengua: { fungiformes: [357, 567] },
@@ -446,7 +450,7 @@ const IA_FIX = {
 export const ORGANS = Object.fromEntries(Object.entries(BASE_ORGANS).map(([k, O]) => [k, {
   ...O,
   img: `./assets/laminas/${k}.webp`,
-  parts: O.parts.map(([id, at]) => [id, (IA_FIX[k] || {})[id] || at]),
+  parts: [...O.parts.map(([id, at]) => [id, (IA_FIX[k] || {})[id] || at]), ...(IA_EXTRA[k] || [])],
 }]));
 
 /** Contingut SVG de la làmina: la imatge realista o, si es demana, el dibuix vectorial original. */

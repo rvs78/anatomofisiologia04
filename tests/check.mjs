@@ -17,7 +17,8 @@ const root = new URL('..', import.meta.url).pathname;
 
 // --- Configuració (decisions del professor)
 ok(PASSWORD === 'alumnesfar', 'contrasenya de classe');
-ok(UNLOCK_CASE === 5, 'el cas clínic es desbloqueja amb 5 estacions');
+ok(UNLOCK_CASE === 0, 'el cas clínic està obert (decisió del 20-11-2026)');
+for (const st of STATIONS) { const tg = st.n2.map(x => x.part); ok(new Set(tg).size === tg.length, `${st.id}: cada cromo de N2 té un punt propi (evita «punt ocupat»)`); }
 
 // --- Interfície: mateixes claus en ca i es
 ok(Object.keys(UI.ca).sort().join() === Object.keys(UI.es).sort().join(), 'UI ca/es amb les mateixes claus');

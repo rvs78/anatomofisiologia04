@@ -39,8 +39,7 @@ Notació: `REQ-xx` requisit; criteris d'acceptació en format **Donat / Quan / A
 
 ### 2.2 Estructura i progressió
 
-**REQ-05 (M) Mapa d'estacions.** Cinc estacions (Vista, Oïda, Olfacte, Gust, Tacte i pell) i una sisena, *Cas clínic integrat*, que **només es desbloqueja quan s'han completat les cinc estacions** (N4 superat a totes).
-- Donat que falta una estació per completar, quan toco el cas clínic, aleshores veig quina estació falta i un enllaç per anar-hi.
+**REQ-05 (M) Mapa d'estacions.** Cinc estacions (Vista, Oïda, Olfacte, Gust, Tacte i pell) i una sisena, *Cas clínic integrat*, que **està obert des del principi** (canvi del 20-11-2026; abans calien les cinc estacions). El mapa recomana fer-lo al final.
 
 **REQ-06 (M) Quatre nivells per estació, de dificultat creixent** (modelatge → pràctica guiada → pràctica autònoma):
 
@@ -169,7 +168,7 @@ Nivells de domini per indicador a l'informe: **assolit** (≥ 75 %), **en procé
 
 | Pregunta | Decisió |
 | --- | --- |
-| Desbloqueig del cas clínic | Amb les **cinc** estacions completades |
+| Desbloqueig del cas clínic | ~~Amb les cinc estacions completades~~ → **obert sempre** (canvi del 20-11-2026; `UNLOCK_CASE = 0`) |
 | Contrasenya | La de les apps de FAR: `alumnesfar` (`anatomofisiologia03` no té pantalla d'entrada; s'ha pres la de `anatomofisiologia02`) |
 | Veu en off a HyperFrames | **No**: només text animat i subtítols |
 | Disseny | **Impeccable obligatori** (instal·lat a `.claude/`) |

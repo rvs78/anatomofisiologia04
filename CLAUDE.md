@@ -20,7 +20,8 @@ Instruccions per a Claude Code en aquest repositori.
 - Abans de cada commit: `node tests/check.mjs`. Abans d'una versió: `npx playwright test`.
 - Codificació de vídeo: H.264, CRF 23, `-preset veryfast`.
 - Vídeos (HyperFrames i Remotion): **sense veu en off**, només text animat i subtítols WebVTT ca/es.
-- El cas clínic només es desbloqueja amb les cinc estacions completades (`config.js → UNLOCK_CASE = 5`).
+- El cas clínic està obert des del 20-11-2026 (`config.js → UNLOCK_CASE = 0`); per tornar a exigir les cinc estacions, posa-hi 5.
+- A N2 cada cromo té el seu propi punt a la làmina: dos cromos al mateix punt fan creure a l'alumnat que el punt ja és «ocupat».
 - Contrasenya de classe: `alumnesfar` (a `config.js`).
 - Cada ítem de contingut porta `ind` (indicador I1–I8 de `spec.md §5.3`).
 

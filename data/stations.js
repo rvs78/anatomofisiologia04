@@ -292,7 +292,7 @@ export const STATIONS = [
       { part: 'epidermis', t: b('Epidermis: barrera i renovació. Si es renova massa ràpid, psoriasi.', 'Epidermis: barrera y renovación. Si se renueva demasiado rápido, psoriasis.') },
       { part: 'sebacia', t: b('Fol·licle i glàndula sebàcia: el sèu obstrueix el fol·licle a l\'acne.', 'Folículo y glándula sebácea: el sebo obstruye el folículo en el acné.') },
       { part: 'pel', t: b('Si el fol·licle s\'infecta en profunditat, és un furóncol.', 'Si el folículo se infecta en profundidad, es un forúnculo.') },
-      { part: 'epidermis', t: b('Els melanòcits fan la melanina: vigila les lesions que canvien (ABCDE).', 'Los melanocitos hacen la melanina: vigila las lesiones que cambian (ABCDE).') },
+      { part: 'melanocits', t: b('Els melanòcits fan la melanina: vigila les lesions que canvien (ABCDE).', 'Los melanocitos hacen la melanina: vigila las lesiones que cambian (ABCDE).') },
       { part: 'lliures', t: b('Les terminacions lliures capten dolor, temperatura i picor (prurit).', 'Las terminaciones libres captan dolor, temperatura y picor (prurito).') },
       { part: 'meissner', t: b('Si fallen receptors o vies: hipoestèsia (menys sensibilitat) o parestèsia (formigueig).', 'Si fallan receptores o vías: hipoestesia (menos sensibilidad) o parestesia (hormigueo).') },
     ],
@@ -305,7 +305,7 @@ export const STATIONS = [
       { c: 'acne', part: 'sebacia', why: b('Unitat pilosebàcia: sèu i obstrucció.', 'Unidad pilosebácea: sebo y obstrucción.') },
       { c: 'furunculosi', part: 'pel', why: b('Infecció profunda del fol·licle pilós.', 'Infección profunda del folículo piloso.') },
       { c: 'psoriasi', part: 'epidermis', why: b('Renovació epidèrmica accelerada.', 'Renovación epidérmica acelerada.') },
-      { c: 'melanoma', part: 'epidermis', why: b('Transformació dels melanòcits de l\'epidermis.', 'Transformación de los melanocitos de la epidermis.') },
+      { c: 'melanoma', part: 'melanocits', why: b('Es transformen els melanòcits, les cèl·lules de l\'epidermis que fan la melanina.', 'Se transforman los melanocitos, las células de la epidermis que hacen la melanina.') },
       { c: 'prurit', part: 'lliures', why: b('Les terminacions nervioses lliures capten la picor.', 'Las terminaciones nerviosas libres captan el picor.') },
     ],
     n3: [

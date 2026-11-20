@@ -211,11 +211,15 @@ export function plate(host, st, ctx) {
         if (!$('[data-chip]', host)) { $('.row.end', host).hidden = false; $('[data-next]', host).focus(); }
       } else {
         ctx.miss(it, chip); fx.shake(chip);
-        say($('.feedback', host), false, `<b>${t('wrong')}</b> ${esc(it.name)} ≠ ${esc(partName(st.organ, tg.dataset.target))}.`);
+        // bastida automàtica (sense cost): al 2n error amb el mateix cromo, l'explicació; al 3r, el punt parpelleja
+        const n = misses[it.k] = (misses[it.k] || 0) + 1;
+        say($('.feedback', host), false, `<b>${t('wrong')}</b> ${esc(it.name)} ≠ ${esc(partName(st.organ, tg.dataset.target))}.${n >= 2 ? ` <b>${t('dragRecall')}</b> ${esc(L(it.why))}` : ''}`);
+        if (n >= 3) blink($(`[data-target="${it.part}"]`, host));
       }
     },
   });
   let hintStage = 0;
+  const misses = {};
   ctx.setHint(() => {
     const chip = D.selected || $('[data-chip]', host); if (!chip) return null;
     const it = items[+chip.dataset.chip];
